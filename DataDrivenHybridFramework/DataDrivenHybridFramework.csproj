@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
+    <PackageReference Include="coverlet.collector" Version="3.1.2" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.3.0" />
+    <PackageReference Include="WebDriverManager" Version="2.14.1" />
+    <PackageReference Include="Selenium.Support" Version="4.3.0" />
+    <PackageReference Include="SeleniumExtras.WaitHelpers" Version="1.0.2" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+    <PackageReference Include="ExtentReports" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Selenium.WebDriver" />
+    <None Remove="WebDriverManager" />
+    <None Remove="Selenium.Support" />
+    <None Remove="SeleniumExtras.WaitHelpers" />
+    <None Remove="System.Configuration.ConfigurationManager" />
+    <None Remove="TestCases\" />
+    <None Remove="TestSetup\" />
+    <None Remove="TestUtils\" />
+    <None Remove="PageObjects\" />
+    <None Remove="TestData\" />
+    <None Remove="ExtentReports" />
+    <None Remove="TestReport\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestCases\" />
+    <Folder Include="TestSetup\" />
+    <Folder Include="TestUtils\" />
+    <Folder Include="PageObjects\" />
+    <Folder Include="TestData\" />
+    <Folder Include="TestReport\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig" />
+  </ItemGroup>
+  
+  
+  <ItemGroup>
+    <None Update="TestData\LoginTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\TestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+ <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+    <Copy SourceFiles="App.config" DestinationFiles="$(OutDir)\testhost.dll.config" />
+  </Target>
+</Project>
